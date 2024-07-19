@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -27,6 +28,15 @@ android {
             )
         }
     }
+
+    flavorDimensions += "env"
+    productFlavors {
+        create("develop") {
+            dimension = "env"
+            buildConfigField("String", "BASE_URL",  "\"https://shoppapp.liverpool.com.mx/\"")
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -36,6 +46,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 

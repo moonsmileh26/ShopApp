@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductsFragment">
+    tools:context=".products.presentation.view.ProductsFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:divider="@color/primary_color"
+            app:iconifiedByDefault="false"
+            app:queryHint="@string/search_label"
+            app:showDividers="middle" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_products"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
 
 </androidx.core.widget.NestedScrollView>
