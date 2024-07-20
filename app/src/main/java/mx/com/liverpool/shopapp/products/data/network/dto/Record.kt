@@ -13,33 +13,33 @@ data class Record(
     val isImportationProduct: Boolean,
     val isMarketPlace: Boolean,
     val lgImage: String,
-    val listPrice: Double,
+    val listPrice: Double?,
     val maximumListPrice: Double,
     val maximumPromoPrice: Double,
     val minimumListPrice: Double,
     val minimumPromoPrice: Double,
     val plpFlags: List<PlpFlag>,
     val productAvgRating: Double,
-    val productDisplayName: String,
+    val productDisplayName: String?,
     val productId: String,
     val productRatingCount: Int,
     val productType: String,
-    val promoPrice: Double,
+    val promoPrice: Double?,
     val promotionalGiftMessage: String,
     val seller: String,
     val skuRepositoryId: String,
-    val smImage: String,
-    val variantsColor: List<VariantsColor>,
+    val smImage: String?,
+    val variantsColor: List<VariantsColor>?,
     val xlImage: String
 ) {
     fun toDomain(): Product {
         return Product(
-            smImage,
-            productDisplayName,
-            listPrice,
-            promoPrice,
-            variantsColor.map {
+            smImage ?: "",
+            productDisplayName ?: "",
+            listPrice.toString(),
+            promoPrice.toString(),
+            variantsColor?.map {
                 it.colorHex
-            })
+            } ?: emptyList())
     }
 }

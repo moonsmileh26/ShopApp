@@ -56,4 +56,9 @@
 
     <include layout="@layout/content_main" />
 
+    <include
+        android:id="@+id/loading_view"
+        layout="@layout/loading_view" />
+
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

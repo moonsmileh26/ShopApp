@@ -1,6 +1,7 @@
 package mx.com.liverpool.shopapp.products.presentation.view
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -26,5 +27,13 @@ class HomeActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
+    }
+
+    fun showLoadingView() {
+        binding.loadingView.root.visibility = View.VISIBLE
+    }
+
+    fun hideLoadingView() {
+        binding.loadingView.root.visibility = View.GONE
     }
 }
