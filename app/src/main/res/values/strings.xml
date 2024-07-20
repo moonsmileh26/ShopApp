@@ -6,5 +6,5 @@
     <string name="search_label">Buscar</string>
     <string name="error_message">Algo salió mal</string>
 
-    <string name="price_list"><strike>$ %1$s</strike></string>
+    <string name="price_list">$ %1$s</string>
 </resources>

@@ -18,21 +18,23 @@ import mx.com.liverpool.shopapp.R
 import mx.com.liverpool.shopapp.databinding.FragmentProductsBinding
 import mx.com.liverpool.shopapp.products.domain.model.Product
 import mx.com.liverpool.shopapp.products.presentation.ProductsState
+import mx.com.liverpool.shopapp.products.presentation.adapter.PaginationScrollListener
 import mx.com.liverpool.shopapp.products.presentation.adapter.ProductsAdapter
 import mx.com.liverpool.shopapp.products.presentation.viewmodel.ProductsViewModel
 
 @AndroidEntryPoint
-class ProductsFragment : Fragment(), SearchView.OnQueryTextListener {
+class ProductsFragment : Fragment(),
+    SearchView.OnQueryTextListener {
 
     private var _binding: FragmentProductsBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     private val viewModel: ProductsViewModel by viewModels()
 
     private lateinit var productsAdapter: ProductsAdapter
+
+    var lastQueryWord = ""
+    var isLoading = true
 
 
     override fun onCreateView(
@@ -74,9 +76,19 @@ class ProductsFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private fun initRecyclerView() {
         productsAdapter = ProductsAdapter()
+
+        val linearLayoutManager = LinearLayoutManager(context)
+
         binding.recyclerViewProducts.apply {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = linearLayoutManager
             adapter = productsAdapter
+            addOnScrollListener(object : PaginationScrollListener(linearLayoutManager) {
+                override fun loadMoreItems() {
+                    viewModel.searchProductsByTerm(lastQueryWord)
+                }
+
+                override fun isLoading(): Boolean = isLoading
+            })
         }
     }
 
@@ -89,6 +101,7 @@ class ProductsFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun showLoadingIndicator(isLoading: Boolean) {
+        this.isLoading = isLoading
         if (isLoading)
             (activity as HomeActivity).showLoadingView()
         else
@@ -106,8 +119,11 @@ class ProductsFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun searchLogic(searchString: String?) {
-        if (searchString?.isNotEmpty() == true)
+        if (searchString?.isNotEmpty() == true) {
+            productsAdapter.clearList()
             viewModel.searchProductsByTerm(searchString)
+            lastQueryWord = searchString
+        }
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {

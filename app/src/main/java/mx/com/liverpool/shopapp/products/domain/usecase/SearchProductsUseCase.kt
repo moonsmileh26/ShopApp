@@ -7,9 +7,11 @@ import mx.com.liverpool.shopapp.products.domain.model.Product
 import mx.com.liverpool.shopapp.products.domain.repository.ProductsRepository
 
 class SearchProductsUseCase(private val repository: ProductsRepository) {
-    suspend operator fun invoke(word: String = "", page: Int = 1): Flow<List<Product>> {
+    private var currentPage = 1
+
+    suspend operator fun invoke(word: String = ""): Flow<List<Product>> {
         return withContext(Dispatchers.IO) {
-            repository.searchProductsByTerm(word, page)
+            repository.searchProductsByTerm(word, currentPage++)
         }
     }
 }
