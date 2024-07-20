@@ -34,20 +34,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_8dp"
-                    android:layout_marginEnd="@dimen/size_16dp"
-                    android:layout_marginBottom="@dimen/size_8dp"
-                    android:text="@string/action_settings"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/size_toolbar_button"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.appbar.MaterialToolbar>

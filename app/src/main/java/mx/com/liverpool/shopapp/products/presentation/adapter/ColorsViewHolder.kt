@@ -10,8 +10,6 @@ class ColorsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val binding = ItemColorBinding.bind(view)
 
     fun render(color: String) {
-        println(color)
         binding.imageviewCircle.setColorFilter(Color.parseColor(color))
     }
-
 }

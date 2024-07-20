@@ -1,4 +1,5 @@
 <resources>
+    <dimen name="size_searchview">280dp</dimen>
     <dimen name="size_title">24sp</dimen>
     <dimen name="size_20dp">20dp</dimen>
     <dimen name="size_16dp">16dp</dimen>

@@ -8,6 +8,7 @@ import mx.com.liverpool.shopapp.products.data.network.ProductsApiService
 import mx.com.liverpool.shopapp.products.data.repository.ProductsRepositoryImpl
 import mx.com.liverpool.shopapp.products.domain.repository.ProductsRepository
 import mx.com.liverpool.shopapp.products.domain.usecase.SearchProductsUseCase
+import mx.com.liverpool.shopapp.products.domain.usecase.SortProductsUseCase
 import javax.inject.Singleton
 
 
@@ -26,5 +27,11 @@ class ProductsModule {
     @Provides
     fun providesSearchProductUseCases(repository: ProductsRepository): SearchProductsUseCase {
         return SearchProductsUseCase(repository)
+    }
+
+    @Singleton
+    @Provides
+    fun providesSortProductsUseCases(repository: ProductsRepository): SortProductsUseCase {
+        return SortProductsUseCase(repository)
     }
 }

@@ -34,6 +34,7 @@ android {
         create("develop") {
             dimension = "env"
             buildConfigField("String", "BASE_URL",  "\"https://shoppapp.liverpool.com.mx/\"")
+            buildConfigField("String", "ENDPOINT",  "\"appclienteservices/services/v3/plp?\"")
         }
     }
 
